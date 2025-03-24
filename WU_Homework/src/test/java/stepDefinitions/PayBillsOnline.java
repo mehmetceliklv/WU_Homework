@@ -93,9 +93,17 @@ public class PayBillsOnline {
     }
     @Then("User clicks on Agent and fills Agent Name,Postal Code")
     public void user_clicks_on_agent_and_fills_agent_name_postal_code() {
+        payBillsPage.findLocationPostalCodeInputBox.click();
+        payBillsPage.findLocationPostalCodeInputBox.sendKeys(Keys.CONTROL + "a");
+        payBillsPage.findLocationPostalCodeInputBox.sendKeys(Keys.DELETE);
+        payBillsPage.findLocationPostalCodeInputBox.sendKeys("08247 Vilnius Vilnius City Municipality, Lithuania");
+        Driver.wait(2);
+        payBillsPage.findLocationPostalCodeInputBox.sendKeys(Keys.ARROW_DOWN);
+        payBillsPage.findLocationPostalCodeInputBox.sendKeys(Keys.ENTER);
+        Driver.wait(2);
         ReusableMethods.clickWithJS(payBillsPage.findLocationAgentButton);
-        payBillsPage.findLocationAgentNameInputBox.sendKeys("TestAgent" + Keys.TAB);
-        payBillsPage.findLocationPostalCodeInputBox.sendKeys("08247 Vilnius, Lithuania" + Keys.TAB);
+        payBillsPage.findLocationAgentNameInputBox.sendKeys("TestAgent");
+        Driver.wait(2);
     }
     @Then("User clicks on Open and get list of open agents below")
     public void user_clicks_on_open_and_get_list_of_open_agents_below() {
