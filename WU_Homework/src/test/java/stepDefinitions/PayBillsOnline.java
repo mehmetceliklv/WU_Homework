@@ -91,18 +91,18 @@ public class PayBillsOnline {
         String currentUrl = Driver.getDriver().getCurrentUrl();
         assertTrue("Page did not redirect correctly", currentUrl.contains("find-locations"));
     }
-    @Then("User clicks on Agent and fills Agent Name,Postal Code")
-    public void user_clicks_on_agent_and_fills_agent_name_postal_code() {
+    @Then("User clicks on Agent and fills Agent Name,Postal Code and City {string} {string} {string}")
+    public void user_clicks_on_agent_and_fills_agent_name_postal_code_and_city(String agent, String postalCode, String city) {
         payBillsPage.findLocationPostalCodeInputBox.click();
         payBillsPage.findLocationPostalCodeInputBox.sendKeys(Keys.CONTROL + "a");
         payBillsPage.findLocationPostalCodeInputBox.sendKeys(Keys.DELETE);
-        payBillsPage.findLocationPostalCodeInputBox.sendKeys("08247 Vilnius Vilnius City Municipality, Lithuania");
+        payBillsPage.findLocationPostalCodeInputBox.sendKeys(postalCode+" "+city);
         Driver.wait(2);
         payBillsPage.findLocationPostalCodeInputBox.sendKeys(Keys.ARROW_DOWN);
         payBillsPage.findLocationPostalCodeInputBox.sendKeys(Keys.ENTER);
-        Driver.wait(2);
+        Driver.wait(3);
         ReusableMethods.clickWithJS(payBillsPage.findLocationAgentButton);
-        payBillsPage.findLocationAgentNameInputBox.sendKeys("TestAgent");
+        payBillsPage.findLocationAgentNameInputBox.sendKeys(agent);
         Driver.wait(2);
     }
     @Then("User clicks on Open and get list of open agents below")
